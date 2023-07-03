@@ -30,7 +30,7 @@ export default function Chat(){
     const inputRef = useRef<HTMLInputElement>(null);
 
     const { messages, input, setInput, handleSubmit, isLoading } = useChat({
-      api: "http://localhost:80/query"
+      api: "http://127.0.0.1:8000/query"
     });
 
     const disabled = isLoading || input.length === 0 || !fileUploaded;
@@ -58,7 +58,7 @@ export default function Chat(){
             console.log(formData);
     
             // Make a request to the server API
-            const response = await fetch('http://localhost:80/upload', {
+            const response = await fetch('http://127.0.0.1:8000/upload', {
               method: 'POST',
               body: formData,
             });
@@ -80,7 +80,7 @@ export default function Chat(){
 
     const fetchAudio = async (msgv: string) => {
       try {
-        const response = await fetch('http://localhost:80/audio', {
+        const response = await fetch('http://127.0.0.1:8000/audio', {
           method: 'POST',
           body: msgv
         });
@@ -104,7 +104,7 @@ export default function Chat(){
       const handlePageUnload = () => {
         // Send a request to the backend to notify about page refresh or closure
         // Use fetch or any other HTTP library to make the request
-        fetch('http://localhost:80/pageunmounted', {
+        fetch('http://127.0.0.1:8000/pageunmounted', {
           method: 'POST'
         });
       };
@@ -278,6 +278,16 @@ export default function Chat(){
             ElevenLabs
           </a>
           .{" "}
+          Check out the{" "}
+          <a
+            href="https://github.com/sumair0/speakDocGPT"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-colors hover:text-black"
+          >
+            Repo
+          </a>
+          {" "}here.
         </p>
         </div>
         </main>
